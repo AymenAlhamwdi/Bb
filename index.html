@@ -3,9 +3,10 @@
 
 <head>
   <style>
-  body{
-    background-image: url('b.jpeg');
-  }
+    body {
+      background-image: url('b.jpeg');
+    }
+
     /* ستايل لتوسيط الصورة في وسط الشاشة */
     #image-container {
       display: flex;
@@ -15,8 +16,8 @@
     }
 
     img {
-      width: 300px;
-      height: 500px;
+      max-width: 100%;
+      height: auto;
       position: absolute;
       transition: opacity 1s ease-in-out;
       /* تحديد مدة ونمط الانتقال التدريجي */
@@ -33,13 +34,11 @@
       width: 300px;
       margin: 22px;
       text-align: center;
-     position:absolute;
-     top: 10px;
-    
+      position: absolute;
+      top: 10px;
     }
-
-   
   </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -55,7 +54,7 @@
     </audio>
   </div>
 
-  
+
   <script>
     var imageIndex = 1; // متغير لتتبع الصورة الحالية
 
