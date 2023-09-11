@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+  body{
+    background-image: url('b.jpeg');
+  }
+    /* ستايل لتوسيط الصورة في وسط الشاشة */
+    #image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    img {
+      width: 300px;
+      height: 500px;
+      position: absolute;
+      transition: opacity 1s ease-in-out;
+      /* تحديد مدة ونمط الانتقال التدريجي */
+    }
+
+    /* ستايل لإخفاء الصورة الثانية بالبداية */
+    #second-image {
+      opacity: 0;
+      /* تعيين الصورة الثانية بشفافية 0 في البداية */
+    }
+
+    /* ستايل لتحديد موضع عنصر الصوت */
+    #audio-player {
+      width: 300px;
+      margin: 22px;
+      text-align: center;
+     position:absolute;
+     top: 10px;
+    
+    }
+
+   
+  </style>
+</head>
+
+<body>
+  <div id="image-container">
+    <img id="first-image" src="f.jpg" />
+    <img id="second-image" src="l.png" />
+  </div>
+
+  <div id="audio-player">
+    <audio id="sound" controls>
+      <source src="sound.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  
+  <script>
+    var imageIndex = 1; // متغير لتتبع الصورة الحالية
+
+    // استدعاء الدالة toggleImage() كل ثانيتين باستخدام setInterval()
+    setInterval(toggleImage, 5000);
+
+    function toggleImage() {
+      // الحصول على عنصر الصورة الأولى والثانية
+      var firstImage = document.getElementById("first-image");
+      var secondImage = document.getElementById("second-image");
+
+      // فحص إذا كانت الصورة الأولى مرئية
+      if (firstImage.style.opacity === "1" || firstImage.style.opacity === "") {
+        // تلاشي الصورة الأولى وظهور الصورة الثانية
+        firstImage.style.opacity = "0";
+        secondImage.style.opacity = "1";
+      } else {
+        // تلاشي الصورة الثانية وظهور الصورة الأولى
+        firstImage.style.opacity = "1";
+        secondImage.style.opacity = "0";
+      }
+    }
+
+    function changeImage() {
+      // الحصول على عنصر الصورة الأولى والثانية
+      var firstImage = document.getElementById("first-image");
+      var secondImage = document.getElementById("second-image");
+
+      // تغيير الصورة الحالية بناءً على قيمة متغير الفهرس
+      if (imageIndex === 1) {
+        firstImage.src = "l.png";
+        secondImage.src = "f.jpg";
+        imageIndex = 2;
+      } else {
+        firstImage.src = "f.jpg";
+        secondImage.src = "l.png";
+        imageIndex = 1;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        var audio = document.getElementById('sound');
+        audio.play();
+      }, 3000); // تأخير التشغيل لمدة 3 ثوانٍ (3000 مللي ثانية)
+    });
+  </script>
+</body>
+
+</html>
